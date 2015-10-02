@@ -88,8 +88,7 @@ public class Command {
                         System.out.println("White the word which u wanna find");
                         String find =scanner.nextLine();
                         textAnalyzer.wordFinder(string,find); break;
-                    case 5: textAnalyzer.sentenceNumbers(string); break; /*cycle; */
-                    case 6: System.exit(0); break; /*cycle; */
+                    case 5: System.exit(0); break; /*cycle; */
                     default: System.out.println("Error! You have to enter digit such as those above");
                 }
             } catch (Exception e){
