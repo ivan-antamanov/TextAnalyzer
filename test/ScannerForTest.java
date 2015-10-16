@@ -33,7 +33,7 @@ public class ScannerForTest extends ScannerForUser {
         iterator = readFileListCommand.iterator();
 
 
-    } //constructor for test application like Text-file-model
+    } //constructor for test application like Context-file-model
 
     @Override
     public String nextLine() {
@@ -48,7 +48,8 @@ public class ScannerForTest extends ScannerForUser {
                 e.printStackTrace();
             }
         }
-    return "Error";}
+        return "Error";
+    }
 
     @Override
     public boolean hasNextLine() {

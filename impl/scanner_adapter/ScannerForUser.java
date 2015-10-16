@@ -12,14 +12,13 @@ public class ScannerForUser {
         this.scanner = scanner;
     } //constructor for User using
 
-
     public String nextLine() {
         return scanner.nextLine();
 
     }
 
     public boolean hasNextLine() {
-         return scanner.hasNextLine();
+        return scanner.hasNextLine();
     }
 
 

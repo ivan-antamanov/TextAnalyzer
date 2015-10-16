@@ -11,13 +11,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-
         Scanner scanner = new Scanner(System.in);
 
         ScannerForUser scannerForTest = new ScannerForUser(scanner);
         ConsoleCommands consoleCommands = new ConsoleCommands(scannerForTest);
 
-       while(!consoleCommands.scanningProcess());
+        while (!consoleCommands.scanningProcess()) ;
 
 
     }

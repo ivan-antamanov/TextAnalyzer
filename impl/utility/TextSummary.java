@@ -13,14 +13,6 @@ public class TextSummary {
 
     }
 
-    public Integer getConsonants() {
-        return consonants;
-    }
-
-    public Integer getVowels() {
-        return vowels;
-    }
-
     @Override
     public String toString() {
         StringBuilder toStringBuilder = new StringBuilder();

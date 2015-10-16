@@ -2,7 +2,7 @@ package main.java.TextAnalyzer.impl.service_tool;
 
 import main.java.TextAnalyzer.impl.scanner_adapter.ScannerForUser;
 import main.java.TextAnalyzer.impl.utility.CommandList;
-import main.java.TextAnalyzer.impl.utility.Text;
+import main.java.TextAnalyzer.impl.utility.Context;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,78 +18,69 @@ import static main.java.TextAnalyzer.impl.utility.CommandList.*;
  */
 public class ConsoleCommands {
 
-    private Text userInputTextAndPath;
+    private Context userContext;
     private ScannerForUser scannerInputText;
 
     public ConsoleCommands(ScannerForUser scannerInputText) {
         this.scannerInputText = scannerInputText;
-        userInputTextAndPath = new Text();
+        userContext = new Context();
     }
 
     public boolean scanningProcess() {
         System.out.println("Enter the command please");
         String command = scannerInputText.nextLine();
-        try {
-            if (getStringEnumMap().containsKey(command)) {
-                switch (getStringEnumMap().get(command)) {
-//
-                    case TEXT_MODEL:
-                        print("Enter the text, please");
-                        readUserInputText();
-                        if (userInputTextAndPath.getInputText().equals("exit")) {
-                            System.out.println("Bay!");
-                            return true;
-                        }
-                        break;
 
-                    case FILE_MODEL:
-                        print("Enter the file path");
-                        readUserFilePath();
-                        if (userInputTextAndPath.getFilePath().equals("exit")) {
-                            System.out.println("Bay!");
-                            return true;
-                        }
-                        break;
+        if (getStringEnumMap().containsKey(command)) {
+            switch (getStringEnumMap().get(command)) {
 
-                    case NUMBER_OF_WORDS:
-                        TextAnalyzerUtils.numbersOfWords(userInputTextAndPath.getInputText());
-                        break;
+                case TEXT_MODE:
+                    print("Enter the text, please");
+                    if (userContext.readInputText()) return true;
 
-                    case NUMBER_OF_SENTENCE:
-                        TextAnalyzerUtils.numberOfSentence(userInputTextAndPath.getInputText());
-                        break;
+                    break;
 
-                    case VOWELS_AND_CONSONANTS:
-                        TextAnalyzerUtils.consAndWow(userInputTextAndPath.getInputText());
-                        break;
+                case FILE_MODE:
+                    print("Enter the file path");
+                    if (userContext.readFilePath()) return true;
+                    fileChose(userContext.getFilePath());
+                    break;
 
-                    case TO_FIND_THE_WORD:
-                        print("Write the word which u wanna find");
-                        String searchWord = scannerInputText.nextLine();
-                        TextAnalyzerUtils.findWord(userInputTextAndPath.getInputText(), searchWord);
-                        break;
+                case NUMBER_OF_WORDS:
+                    TextAnalyzerUtils.numbersOfWords(userContext.getInputText());
+                    break;
 
-                    case NUMBER_OF_SYMBOLS:
-                        TextAnalyzerUtils.numberOfSymbols(userInputTextAndPath.getInputText());
-                        break;
+                case NUMBER_OF_SENTENCE:
+                    TextAnalyzerUtils.numberOfSentence(userContext.getInputText());
+                    break;
 
-                    case HELP:
-                        help();
-                        break;
+                case VOWELS_AND_CONSONANTS:
+                    TextAnalyzerUtils.consAndWow(userContext.getInputText());
+                    break;
 
-                    case EXIT:
-                        System.out.println("Bay!");
-                        return true;
+                case TO_FIND_THE_WORD:
+                    print("Write the word which u wanna find");
+                    String searchWord = scannerInputText.nextLine();
+                    TextAnalyzerUtils.findWord(userContext.getInputText(), searchWord);
+                    break;
 
-                    default:
-                        System.out.println("This command has not included into processing command list yet");
-                }
+                case NUMBER_OF_SYMBOLS:
+                    TextAnalyzerUtils.numberOfSymbols(userContext.getInputText());
+                    break;
 
-            } else {
-                System.out.println("Wrong command");
+                case HELP:
+                    help();
+                    break;
+
+                case EXIT:
+                    System.out.println("Bay!");
+                    return true;
+
+                default:
+                    System.out.println("This command has not included into processing command list yet");
             }
-        } catch (NullPointerException e) {
-            System.out.println("At first, u should enter the text");
+
+        } else {
+            System.out.println("Wrong command");
         }
 
         return scanningProcess();
@@ -104,34 +95,35 @@ public class ConsoleCommands {
                 stringBuilder.append(nextLine);
                 stringBuilder.append("\n");
             }
-
-            userInputTextAndPath.setInputText(stringBuilder.toString());
-            System.out.print(userInputTextAndPath);
+            userContext.readInputText(stringBuilder.toString());
+            System.out.print(userContext.getInputText());
             print("Successful scan");
-            print("Enter the command");
-
-//            scanningProcess();
         } catch (FileNotFoundException e) {
             print("Non-correct file path");
-            readUserFilePath();
+            userContext.readFilePath();
         } catch (IOException e) {
             print("Can't scanning file! Please check file settings and entering the correct file directory:");
-            readUserFilePath();
+            userContext.readFilePath();
         } catch (Exception e) {
             print("Something going wrong. Please try again");
         }
-//        return scanningProcess();
+
     }
 
-    private void readUserFilePath() {
-        userInputTextAndPath.setFilePath(scannerInputText.nextLine());
-        fileChose(userInputTextAndPath.getFilePath());
+    boolean checkExit() {
+        return (userContext.getFilePath().equals("exit") | userContext.getFilePath().equals("exit"));
+
     }
 
+//    private void readUserFilePath() {
+//        userContext.readFilePath(scannerInputText.nextLine());
+//        fileChose(userContext.getFilePath());
+//    }
 
-    private void readUserInputText() {
-        userInputTextAndPath.setInputText(scannerInputText.nextLine());
-    }
+
+//    private void readUserInputText() {
+//        userContext.readInputText(scannerInputText.nextLine());
+//    }
 
     public void help() {
         print("This is \"text analyzer\" which can analyzing the text.\n" +

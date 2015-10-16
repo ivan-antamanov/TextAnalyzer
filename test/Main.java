@@ -11,7 +11,6 @@ public class Main {
 
         ScannerForUser scannerForTest = new ScannerForTest("src\\main\\java\\TextAnalyzer\\resources\\new 3.txt", "be");
         ConsoleCommands consoleCommands = new ConsoleCommands(scannerForTest);
-
         consoleCommands.scanningProcess();
     }
 }

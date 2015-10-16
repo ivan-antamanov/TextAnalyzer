@@ -43,48 +43,63 @@ public class TextAnalyzerUtils {
     } //count numbers of consonant and vowels
 
     public static void numbersOfWords(String inputText) {
-        int i = 0;
-        pattern = Pattern.compile("[a-zA-Z0-9]+(?=[,\\s\\.()\";:!?\\/\\-]*)");
-        matcher = pattern.matcher(inputText);
-        while (matcher.find()) {
-            i++;
+        if (inputText == null || inputText.equals("")) {
+            System.out.println("There is no text");
+        } else {
+            int i = 0;
+            pattern = Pattern.compile("[a-zA-Z0-9]+(?=[,\\s\\.()\";:!?\\/\\-]*)");
+            matcher = pattern.matcher(inputText);
+            while (matcher.find()) {
+                i++;
+            }
+            System.out.println("There are: " + i + " words");
         }
-        System.out.println("There are: " + i + " words");
     }
 
     public static void numberOfSymbols(String inputText) {
-        int i = 0;
-        pattern = Pattern.compile("[.]*");
-        matcher = pattern.matcher(inputText);
-        while (matcher.find()) {
-            i++;
+        if (inputText == null || inputText.equals("")) {
+            System.out.println("There is no text");
+        } else {
+            int i = 0;
+            pattern = Pattern.compile("[.]*");
+            matcher = pattern.matcher(inputText);
+            while (matcher.find()) {
+                i++;
+            }
+            System.out.println("There are: " + i + " symbols");
         }
-        System.out.println("There are: " + i + " symbols");
     }
 
     public static void numberOfSentence(String inputText) {
-        int i = 0;
-        pattern = Pattern.compile("(?:([.!?][\\s]*[A-Z])|([.!?][\\s]*$))");
-        matcher = pattern.matcher(inputText);
+        if (inputText == null || inputText.equals("")) {
+            System.out.println("There is no text");
+        } else {
+            int i = 0;
+            pattern = Pattern.compile("(?:([.!?][\\s]*[A-Z])|([.!?][\\s]*$))");
+            matcher = pattern.matcher(inputText);
 
-        while (matcher.find()) {
-            i++;
+            while (matcher.find()) {
+                i++;
+            }
+            System.out.println("There are: " + i + " Sentence(s)");
+
         }
-        System.out.println("There are: " + i + " Sentence(s)");
-
     }
 
     public static void findWord(String inputText, String searchWord) {
-        int i = 0;
-        pattern = Pattern.compile(searchWord);
-        matcher = pattern.matcher(inputText);
+        if (inputText == null || inputText.equals("")) {
+            System.out.println("There is no text");
+        } else {
+            int i = 0;
+            pattern = Pattern.compile(searchWord);
+            matcher = pattern.matcher(inputText);
 
-        while (matcher.find()) {
-            i++;
+            while (matcher.find()) {
+                i++;
+            }
+            System.out.println("There are: " + i + " matches");
         }
-        System.out.println("There are: " + i + " matches");
     }
-
 }
 
 
