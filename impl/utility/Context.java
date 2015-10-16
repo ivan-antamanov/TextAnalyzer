@@ -36,11 +36,11 @@ public class Context {
     }
 
     boolean checkExit(String inputData) {
-        if(inputData.equals("exit")){
+        if (inputData.equals("exit")) {
             System.out.println("Bay");
             return true;
         }
-return false;
+        return false;
     }
 
 }

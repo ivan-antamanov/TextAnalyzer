@@ -115,16 +115,6 @@ public class ConsoleCommands {
 
     }
 
-//    private void readUserFilePath() {
-//        userContext.readFilePath(scannerInputText.nextLine());
-//        fileChose(userContext.getFilePath());
-//    }
-
-
-//    private void readUserInputText() {
-//        userContext.readInputText(scannerInputText.nextLine());
-//    }
-
     public void help() {
         print("This is \"text analyzer\" which can analyzing the text.\n" +
                 "At first u have to choose how r u going to analyze text: from file or has entered in console.\n" +
