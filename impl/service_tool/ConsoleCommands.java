@@ -30,19 +30,15 @@ public class ConsoleCommands {
         System.out.println("Enter the command please");
         String command = scannerInputText.nextLine();
 
-        if (getStringEnumMap().containsKey(command)) {
-            switch (getStringEnumMap().get(command)) {
+        CommandList enumCommand = getStringEnumMap().get(command);
+        if (enumCommand != null) {
+            switch (enumCommand) {
 
                 case TEXT_MODE:
-                    print("Enter the text, please");
-                    if (userContext.readInputText()) return true;
-
-                    break;
-
                 case FILE_MODE:
-                    print("Enter the file path");
-                    if (userContext.readFilePath()) return true;
-                    fileChose(userContext.getFilePath());
+                    if (readContext(enumCommand)) {
+                        return true;
+                    }
                     break;
 
                 case NUMBER_OF_WORDS:
@@ -58,7 +54,7 @@ public class ConsoleCommands {
                     break;
 
                 case TO_FIND_THE_WORD:
-                    print("Write the word which u wanna find");
+                    System.out.println("Write the word which u wanna find");
                     String searchWord = scannerInputText.nextLine();
                     TextAnalyzerUtils.findWord(userContext.getInputText(), searchWord);
                     break;
@@ -78,15 +74,32 @@ public class ConsoleCommands {
                 default:
                     System.out.println("This command has not included into processing command list yet");
             }
-
         } else {
-            System.out.println("Wrong command");
+            System.out.println("The are incorrect command (help)");
         }
 
         return scanningProcess();
     }
 
-    private void fileChose(String filePath) {
+    private boolean readContext(CommandList command) {
+        System.out.println(command.getDescription());
+        String inputText = scannerInputText.nextLine();
+        if ((EXIT.getShortCommand()).equals(inputText)) {
+            System.out.println("Bay");
+            return true;
+        }
+        switch (command) {
+            case TEXT_MODE:
+                userContext.setInputText(inputText);
+                break;
+            case FILE_MODE:
+                readFile(inputText);
+                break;
+        }
+        return false;
+    }
+
+    private void readFile(String filePath) {
         Path file = Paths.get(filePath);
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader bufferedReader = Files.newBufferedReader(file)) {
@@ -95,28 +108,23 @@ public class ConsoleCommands {
                 stringBuilder.append(nextLine);
                 stringBuilder.append("\n");
             }
-            userContext.readInputText(stringBuilder.toString());
+            userContext.setInputText(stringBuilder.toString());
             System.out.print(userContext.getInputText());
-            print("Successful scan");
+            System.out.println("Successful scan");
         } catch (FileNotFoundException e) {
-            print("Non-correct file path");
-            userContext.readFilePath();
+            System.out.println("Non-correct file path");
+            readFile(scannerInputText.nextLine());
         } catch (IOException e) {
-            print("Can't scanning file! Please check file settings and entering the correct file directory:");
-            userContext.readFilePath();
+            System.out.println("Can't scanning file! Please check file settings and entering the correct file directory:");
+            readFile(scannerInputText.nextLine());
         } catch (Exception e) {
-            print("Something going wrong. Please try again");
+            System.out.println("Something going wrong. Please try again");
         }
 
     }
 
-    boolean checkExit() {
-        return (userContext.getFilePath().equals("exit") | userContext.getFilePath().equals("exit"));
-
-    }
-
-    public void help() {
-        print("This is \"text analyzer\" which can analyzing the text.\n" +
+    private void help() {
+        System.out.println("This is \"text analyzer\" which can analyzing the text.\n" +
                 "At first u have to choose how r u going to analyze text: from file or has entered in console.\n" +
                 "After that u can choose methods to analyze\n" +
                 "When the analyze has finished u may exit from applications\n" +
@@ -124,10 +132,5 @@ public class ConsoleCommands {
         for (CommandList command : CommandList.values())
             System.out.println(command.toString());
     }
-
-    public void print(String string) {
-        System.out.println(string);
-    }
-
 
 }

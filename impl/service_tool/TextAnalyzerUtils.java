@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 public class TextAnalyzerUtils {
     private static Pattern pattern;
     private static Matcher matcher;
+    private static final String delimiter ="*****";
 
     public static void consAndWow(String inputText) {
         int vowels = 0;
@@ -38,7 +39,7 @@ public class TextAnalyzerUtils {
                 }
             }
         }
-        System.out.println(new TextSummary(vowels, consonants));
+        System.out.println(new TextSummary(vowels, consonants)+delimiter);
 
     } //count numbers of consonant and vowels
 
@@ -52,7 +53,7 @@ public class TextAnalyzerUtils {
             while (matcher.find()) {
                 i++;
             }
-            System.out.println("There are: " + i + " words");
+            System.out.println("There are: " + i + " words\n"+delimiter);
         }
     }
 
@@ -66,7 +67,7 @@ public class TextAnalyzerUtils {
             while (matcher.find()) {
                 i++;
             }
-            System.out.println("There are: " + i + " symbols");
+            System.out.println("There are: " + i + " symbols\n"+delimiter);
         }
     }
 
@@ -81,7 +82,7 @@ public class TextAnalyzerUtils {
             while (matcher.find()) {
                 i++;
             }
-            System.out.println("There are: " + i + " Sentence(s)");
+            System.out.println("There are: " + i + " Sentence(s)\n"+delimiter);
 
         }
     }
@@ -97,7 +98,7 @@ public class TextAnalyzerUtils {
             while (matcher.find()) {
                 i++;
             }
-            System.out.println("There are: " + i + " matches");
+            System.out.println("There are: " + i + " matches\n"+delimiter);
         }
     }
 }

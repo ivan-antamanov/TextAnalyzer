@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class Context {
 
     private String inputText;
-    private String filePath;
 
     public Context() {
     }
@@ -17,30 +16,7 @@ public class Context {
         return inputText;
     }
 
-    public boolean readInputText() {
-        this.inputText = new Scanner(System.in).nextLine();
-        return checkExit(inputText);
-    }
-
-    public void readInputText(String inputText) {
+    public void setInputText(String inputText) {
         this.inputText = inputText;
     }
-
-    public String getFilePath() {
-        return filePath;
-    }
-
-    public boolean readFilePath() {
-        filePath = new Scanner(System.in).nextLine();
-        return checkExit(filePath);
-    }
-
-    boolean checkExit(String inputData) {
-        if (inputData.equals("exit")) {
-            System.out.println("Bay");
-            return true;
-        }
-        return false;
-    }
-
 }

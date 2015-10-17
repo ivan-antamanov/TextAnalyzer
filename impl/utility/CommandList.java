@@ -1,7 +1,5 @@
 package main.java.TextAnalyzer.impl.utility;
 
-import main.java.TextAnalyzer.impl.service_tool.TextAnalyzerUtils;
-
 import java.util.HashMap;
 
 /**
@@ -16,19 +14,19 @@ public enum CommandList {
     TO_FIND_THE_WORD("ftw", "To find the word"),
     NUMBER_OF_SYMBOLS("numsym", "To find the word"),
     HELP("help", "How use this application"),
-    EXIT("exit", "Exit from applications");
+    EXIT("--exit", "Exit from applications");
 
-    private String command;
+    private String description;
     private String shortCommand;
 
-    CommandList(String shortCommand, String command) {
+    CommandList(String shortCommand, String description) {
         this.shortCommand = shortCommand;
-        this.command = command;
+        this.description = description;
 
     }
 
-    public String getCommand() {
-        return command;
+    public String getDescription() {
+        return description;
     }
 
     public String getShortCommand() {
@@ -42,7 +40,7 @@ public enum CommandList {
             if (e.getShortCommand() != null) {
                 stringEnumMap.put(e.getShortCommand(), e);
             } else {
-                stringEnumMap.put(e.getCommand().toLowerCase(), e);
+                stringEnumMap.put(e.getDescription().toLowerCase(), e);
             }
         }
     }
@@ -53,6 +51,6 @@ public enum CommandList {
 
     @Override
     public String toString() {
-        return shortCommand + "(command)" + "=" + command; //Can make through StringBuilder
+        return shortCommand + "(description)" + "=" + description; //Can make through StringBuilder
     }
 }

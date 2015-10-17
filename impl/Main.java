@@ -16,7 +16,7 @@ public class Main {
         ScannerForUser scannerForTest = new ScannerForUser(scanner);
         ConsoleCommands consoleCommands = new ConsoleCommands(scannerForTest);
 
-        while (!consoleCommands.scanningProcess()) ;
+        consoleCommands.scanningProcess() ;
 
 
     }
