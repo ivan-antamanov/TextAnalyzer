@@ -1,4 +1,4 @@
-package main.java.TextAnalyzer.impl.utility;
+package utils;
 
 /**
  * Created by iantaman on 06.10.2015.

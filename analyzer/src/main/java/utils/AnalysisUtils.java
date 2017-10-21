@@ -1,15 +1,10 @@
-package main.java.TextAnalyzer.impl.service_tool;
+package utils;
 
-import main.java.TextAnalyzer.impl.utility.EnglishAlphabet;
-import main.java.TextAnalyzer.impl.utility.TextSummary;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by iantaman on 24.09.2015.
- */
-public class TextAnalyzerUtils {
+public class AnalysisUtils {
     private static Pattern pattern;
     private static Matcher matcher;
     private static final String delimiter ="*****";
@@ -22,7 +17,7 @@ public class TextAnalyzerUtils {
         char[] symbolArray = inputText.toCharArray();
 
         for (Character c : symbolArray) {
-            if (EnglishAlphabet.getLetterList().contains(c)) {
+            if (Constant.getLetterList().contains(c)) {
 
                 switch (c) {
                     case 'a':
@@ -39,7 +34,7 @@ public class TextAnalyzerUtils {
                 }
             }
         }
-        System.out.println(new TextSummary(vowels, consonants)+delimiter);
+        System.out.println(new TextSummary(vowels, consonants) +delimiter);
 
     } //count numbers of consonant and vowels
 
@@ -48,7 +43,7 @@ public class TextAnalyzerUtils {
             System.out.println("There is no text");
         } else {
             int i = 0;
-            pattern = Pattern.compile("[a-zA-Z0-9]+(?=[,\\s\\.()\";:!?\\/\\-]*)");
+            pattern = Pattern.compile("[а-яА-ЯёЁa-zA-Z0-9]+(?=[,\\s\\.()\";:!?\\/\\-]*)");
             matcher = pattern.matcher(inputText);
             while (matcher.find()) {
                 i++;
@@ -76,7 +71,8 @@ public class TextAnalyzerUtils {
             System.out.println("There is no text");
         } else {
             int i = 0;
-            pattern = Pattern.compile("(?:([.!?][\\s]*[A-Z])|([.!?][\\s]*$))");
+//            pattern = Pattern.compile("(?:([.!?][\\s]*[A-Z])|([.!?][\\s]*$))");
+            pattern = Pattern.compile("(?:([.!?][\\s]*[а-яА-ЯёЁa-zA-Z0-9])|([.!?][\\s]*$))");
             matcher = pattern.matcher(inputText);
 
             while (matcher.find()) {
@@ -102,6 +98,3 @@ public class TextAnalyzerUtils {
         }
     }
 }
-
-
-

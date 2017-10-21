@@ -1,19 +1,19 @@
-package main.java.TextAnalyzer.impl.utility;
+package utils;
 
 import java.util.ArrayList;
 
 /**
- * Created by iantaman on 24.09.2015.
+ * Created by User on 21.10.2017.
  */
-public class EnglishAlphabet {
+public class Constant {
+
     private static ArrayList<Character> letterList = new ArrayList<>(26);
 
     static {
         for (int i = 0; i < 26; i++) {
             int c = 'a' + i;
             char a = (char) c;
-            Character character = new Character(a);
-            letterList.add(character);
+            letterList.add(new Character(a));
         }
     }
 

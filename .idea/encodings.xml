@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/analyzer/src/main/resources/TestBook.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/analyzer/src/test/java/mechanisms/WordsMechanismTest.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/analyzer/src/test/resources/TestBook.txt" charset="windows-1251" />
+  </component>
+</project>
